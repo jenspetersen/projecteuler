@@ -29,6 +29,7 @@ TODO
 # =============================================================================
 
 import numpy as np
+import time
 
 # =============================================================================
 # PROGRAM METADATA
@@ -93,7 +94,7 @@ def divisors(n):
 
     result = [1]
 
-    for i in range(2, n):
+    for i in xrange(2, n/2):
         if n % i == 0:
             result.append(i)
 
@@ -102,6 +103,23 @@ def divisors(n):
 
     return result
 
+
+def allProducts(factors):
+
+    if len(factors) == 2:
+        return set(factors + [factors[0] * factors[1]])
+
+    elif len(factors) == 1:
+        return set(factors)
+
+    else:
+        result = allProducts(factors[1:])
+        for entry in list(result):
+            result.add(factors[0] * entry)
+        result.add(factors[0])
+        return result
+
+
 # =============================================================================
 # MAIN METHOD
 # =============================================================================
@@ -109,8 +127,18 @@ def divisors(n):
 
 def main():
 
-    for i in range(20):
-        print i, primeFactors(i)
+    divisors = 0
+    maxDivisors = 0
+    i = 100 # low enough starting point
+
+    while divisors <= 500:
+
+        divisors = len(allProducts(primeFactors(triangle(i))))
+        if divisors > maxDivisors:
+            maxDivisors = divisors
+            print i, triangle(i), divisors
+
+        i += 1
 
 # =============================================================================
 # RUN
