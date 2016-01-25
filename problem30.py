@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
+
 :AUTHOR: Jens Petersen
 :ORGANIZATION: Heidelberg University Hospital; German Cancer Research Center
 :CONTACT: jens.petersen@dkfz-heidelberg.de
-:SINCE: Fri Jan 15 09:38:03 2016
+:SINCE: Fri Jan 22 13:04:43 2016
 :VERSION: 0.1
 
 DESCRIPTION
@@ -23,7 +24,6 @@ TODO
 
 
 """
-
 # =============================================================================
 # IMPORT STATEMENTS
 # =============================================================================
@@ -37,13 +37,8 @@ __author__ = 'Jens Petersen'
 __email__ = 'jens.petersen@dkfz-heidelberg.de'
 __copyright__ = ''
 __license__ = ''
-__date__ = 'Fri Jan 15 09:38:03 2016'
+__date__ = 'Fri Jan 22 13:04:43 2016'
 __version__ = '0.1'
-
-# =============================================================================
-# CLASSES
-# =============================================================================
-
 
 # =============================================================================
 # METHODS
@@ -54,33 +49,21 @@ __version__ = '0.1'
 # MAIN METHOD
 # =============================================================================
 
-
 def main():
 
-    primes = [2]
-    i = 3
+    sum_ = 0
 
-    while len(primes) < 1001:
+    for i in xrange(2, 6*9**5 + 1):
+        if i == sum(map(lambda x: x**5, map(int, str(i)))):
+            print i
+            sum_ += i
 
-        isPrime = True
-
-        for prime in primes:
-            if i % prime == 0:
-                isPrime = False
-                break
-
-        if isPrime:
-            primes.append(i)
-            print "prime #{}: {}".format(len(primes), i)
-
-        i += 1
+    print sum_
 
 # =============================================================================
 # RUN
 # =============================================================================
 
-
 if __name__ == "__main__":
 
     main()
-
